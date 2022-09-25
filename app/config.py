@@ -7,6 +7,7 @@ class Config(BaseSettings):
     MONGO_DB: str  # Mongo database
     SECRET_KEY: str  # secret key for jwt encoding
     ALGORITHM: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
 
     class Config:
         env_file = ".env"
