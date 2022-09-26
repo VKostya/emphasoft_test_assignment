@@ -13,8 +13,8 @@ Clone this repository, add .env file in a root with this env. variables:
 - ACCESS_TOKEN_EXPIRE_MINUTES - 30 minutes
 
 Then install all the packages from requirements.txt using
-'''
+
 pip install requirements.txt
-'''
+
 Then run main.py file
 The service will be hosted at http://127.0.0.1:8000
