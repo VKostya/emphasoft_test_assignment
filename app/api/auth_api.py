@@ -2,7 +2,8 @@ from datetime import timedelta
 from fastapi import APIRouter, Body, HTTPException, Depends
 from db.database import auth_users
 from schemas.schemas import AuthModel
-from utils.auth import create_access_token, get_password_hash, verify_password
+from utils.auth import create_access_token
+from utils.security import get_password_hash, verify_password
 from config import config
 from fastapi.security import OAuth2PasswordRequestForm
 

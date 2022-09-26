@@ -1,24 +1,19 @@
 from config import config
-from passlib.context import CryptContext
+
 from datetime import datetime, time, timedelta
 from jose import jwt, JWTError
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from db.database import auth_users
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login", scheme_name="JWT")
 
 
-def get_password_hash(password: str):
-    return pwd_context.hash(password)
-
-
-def verify_password(plain_password: str, hashed_password: str):
-    return pwd_context.verify(plain_password, hashed_password)
-
-
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
+    """
+    function to create JWTAuth token
+    """
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -30,6 +25,10 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
 
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
+    """
+    funcion than check if user is authorized
+    returns user's data
+    """
     credentials_exception = HTTPException(
         status_code=401,
         detail="Could not validate credentials",
